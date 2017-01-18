@@ -50,7 +50,7 @@ module.exports = function (grunt) {
                     host: "<%= proxy.host %>",
                     https: protocol === "https" ? true : false,
                     secure: false
-                        }, {
+                    }, {
                     context: "/resources",
                     host: "<%= proxy.host %>",
                     https: protocol === "https" ? true : false,
@@ -66,10 +66,10 @@ module.exports = function (grunt) {
             options: {
                 resources: [
                     "<%= dir.bower_components %>/openui5-sap.ui.core/resources",
-					"<%= dir.bower_components %>/openui5-sap.m/resources",
-					"<%= dir.bower_components %>/openui5-themelib_sap_bluecrystal/resources",
+                    "<%= dir.bower_components %>/openui5-sap.m/resources",
+                    "<%= dir.bower_components %>/openui5-themelib_sap_bluecrystal/resources",
                     "<%= dir.bower_components %>/openui5-sap.ui.layout/resources"
-				]
+                ]
             },
             local: {
                 options: {
@@ -86,8 +86,8 @@ module.exports = function (grunt) {
                         cwd: "<%= dir.app %>", // path to app root folder
                         prefix: "RESOURCE_ROOT", // namespace prefix (in case the namespace is not already in folder structure like sap/ui/core/**)
                         src: [
-				            "**/*.js",
-				            "!**/Component-preload.js",
+                            "**/*.js",
+                            "!**/Component-preload.js",
                             "**/*.fragment.html",
                             "**/*.fragment.json",
                             "**/*.fragment.xml",
@@ -98,7 +98,7 @@ module.exports = function (grunt) {
                             "!test/**",
                             "!indexLocal.html",
                             "!localService/**"
-						]
+                        ]
                     },
                     dest: "<%= dir.dist %>" // destination for the Component-preload.js file
                 },
@@ -116,14 +116,13 @@ module.exports = function (grunt) {
                         expand: true,
                         cwd: "<%= dir.app %>",
                         src: [
-							"**",
-							"!test/**",
+                            "**",
+                            "!test/**",
                             "!indexLocal.html",
                             "!localService/**"
-						],
+                        ],
                         dest: "<%= dir.dist %>"
-					}
-				]
+                        }]
             }
         },
 
@@ -135,8 +134,8 @@ module.exports = function (grunt) {
             all: {
                 options: {
                     urls: [
-						"http://<%= connect.options.hostname %>:<%= connect.local.options.port %>/test/unit/unitTests.qunit.html"
-					]
+                        "http://<%= connect.options.hostname %>:<%= connect.local.options.port %>/test/unit/unitTests.qunit.html"
+                    ]
                 }
             }
         },

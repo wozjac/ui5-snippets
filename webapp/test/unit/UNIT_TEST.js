@@ -1,4 +1,4 @@
-/* global sap, QUnit, sinon, jQuery */
+/* global sap, QUnit */
 sap.ui.define([
     "sap/ui/thirdparty/sinon",
     "sap/ui/thirdparty/sinon-qunit"
@@ -12,6 +12,6 @@ sap.ui.define([
     });
 
     QUnit.test("SHOULD PASS", function (assert) {
-
+        assert.ok(true, "Pass");
     });
 });

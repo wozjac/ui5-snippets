@@ -1,7 +1,7 @@
 /* global sap */
 sap.ui.define([
     "sap/ui/model/json/JSONModel",
-	"sap/ui/Device"
+    "sap/ui/Device"
 ], function (JSONModel, Device) {
     "use strict";
 

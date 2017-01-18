@@ -1,7 +1,7 @@
 /* global sap, jQuery, document */
 sap.ui.define([
     "sap/ui/core/UIComponent",
-	"sap/ui/Device",
+    "sap/ui/Device",
     "RESOURCE_ROOT/model/modelFactory"
 ], function (UIComponent, Device, modelFactory) {
     "use strict";
