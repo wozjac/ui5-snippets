@@ -11,11 +11,14 @@ sap.ui.define([
         generateMissing: true
     };
 
+    (function init() {
+        mockServer = new MockServer({
+            rootUri: options.rootUri
+        });
+    })();
+
     return {
-        init: function () {
-            mockServer = new MockServer({
-                rootUri: options.rootUri
-            });
+        run: function () {
             mockServer.simulate(options.metadataPath);
             //mockServer.simulate(options.metadataPath, {
             //    sMockdataBaseUrl: options.mockDataPath,
@@ -26,6 +29,21 @@ sap.ui.define([
 
         getMockServer: function () {
             return mockServer;
+        },
+
+        getMockData: function () {
+            var metadata = mockServer._loadMetadata(options.metadataPath);
+
+            if (!metadata) {
+                return null;
+            }
+
+            // here we need to analyse the EDMX and identify the entity sets
+            var entitySets = mockServer._findEntitySets(metadata);
+            mockServer._findEntityTypes(metadata);
+            mockServer._generateMockdata(entitySets, metadata);
+
+            return mockServer._oMockdata;
         }
     };
 });
