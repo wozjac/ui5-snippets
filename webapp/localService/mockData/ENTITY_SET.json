@@ -4,7 +4,7 @@
         "uri": "ENTITY_SET('KEY_VALUE')",
         "type": "SERVICE_NAME.ENTITY"
     },
-    "FunctionalPeriodDetails": {
+    "EntityName": {
         "__deferred": {
             "uri": "ENTITY_SET('KEY_VALUE')/NAVIGATION_PROPERTY"
         }
