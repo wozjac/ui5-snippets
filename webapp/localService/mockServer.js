@@ -1,37 +1,46 @@
 /* global sap, jQuery */
 sap.ui.define([
     "sap/ui/core/util/MockServer"
-], function (MockServer) {
-    var mockServer;
+], function(MockServer) {
+    return function MyMockServer(options) {
+        if (!options.rootUri) {
+            throw new Error("rootUri not set");
+        }
 
-    var options = {
-        rootUri: "/SERVICE_URI/",
-        metadataPath: jQuery.sap.getModulePath("RESOURCE_ROOT") + "/localService/metadata.xml",
-        mockDataPath: jQuery.sap.getModulePath("RESOURCE_ROOT") + "/localService/mockData",
-        generateMissing: true
-    };
+        if (options.metadataPath === undefined) {
+            options.metadataPath = jQuery.sap.getModulePath(options.resourceRoot) + "/localService/metadata.xml";
+        } else {
+            options.metadataPath = jQuery.sap.getModulePath(options.resourceRoot) + options.metadataPath;
+        }
 
-    (function init() {
-        mockServer = new MockServer({
+        if (options.mockDataPath === undefined) {
+            options.mockDataPath = jQuery.sap.getModulePath(options.resourceRoot) + "/localService/mockData";
+        } else {
+            options.mockDataPath = jQuery.sap.getModulePath(options.resourceRoot) + options.mockDataPath;
+        }
+
+        if (options.generateMissing === undefined) {
+            options.generateMissing = true;
+        }
+
+        var mockServer = new MockServer({
             rootUri: options.rootUri
         });
-    })();
 
-    return {
-        run: function () {
-            mockServer.simulate(options.metadataPath);
-            //mockServer.simulate(options.metadataPath, {
-            //    sMockdataBaseUrl: options.mockDataPath,
-            //    bGenerateMissingMockData: options.generateMissing
-            //});
+        this.run = function() {
+            //mockServer.simulate();
+            mockServer.simulate(options.metadataPath, {
+                sMockdataBaseUrl: options.mockDataPath,
+                bGenerateMissingMockData: options.generateMissing
+            });
             mockServer.start();
-        },
+        };
 
-        getMockServer: function () {
+        this.getMockServer = function() {
             return mockServer;
-        },
+        };
 
-        getMockData: function () {
+        this.getMockData = function() {
             var metadata = mockServer._loadMetadata(options.metadataPath);
 
             if (!metadata) {
@@ -44,6 +53,6 @@ sap.ui.define([
             mockServer._generateMockdata(entitySets, metadata);
 
             return mockServer._oMockdata;
-        }
+        };
     };
 });
