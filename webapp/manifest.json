@@ -1,5 +1,6 @@
 {
     "_version": "1.2.0",
+    "start_url": "index.html",
     "sap.app": {
         "_version": "1.2.0",
         "id": "ID",
@@ -19,10 +20,6 @@
                     "localUri": "localService/metadata.xml"
                 }
             }
-        },
-        "sourceTemplate": {
-            "id": "servicecatalog.connectivityComponent",
-            "version": "0.0.0"
         }
     },
     "sap.ui": {
@@ -30,11 +27,7 @@
         "technology": "UI5",
         "icons": {
             "icon": "sap-icon://task",
-            "favIcon": "",
-            "phone": "",
-            "phone@2": "",
-            "tablet": "",
-            "tablet@2": ""
+            "favIcon": ""
         },
         "deviceTypes": {
             "desktop": true,
@@ -43,7 +36,8 @@
         },
         "supportedThemes": [
             "sap_hcb",
-            "sap_bluecrystal"
+            "sap_bluecrystal",
+            "sap_belize"
         ]
     },
     "sap.ui5": {
@@ -57,7 +51,9 @@
         "dependencies": {
             "minUI5Version": "1.36.0",
             "libs": {
-                "sap.m": {}
+                "sap.m": {
+                    "minUI5Version": "1.36.0"
+                }
             }
         },
         "contentDensities": {
@@ -67,9 +63,7 @@
         "models": {
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
-                "settings": {
-                    "bundleName": "RESOURCE_ROOT.i18n.i18n"
-                }
+                "uri": "i18n/i18n.properties"
             },
             "": {
                 "dataSource": "mainService",
