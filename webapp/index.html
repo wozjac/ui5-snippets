@@ -11,34 +11,33 @@
     <script id="sap-ui-bootstrap"
         src="resources/sap-ui-cachebuster/sap-ui-core.js"
         data-sap-ui-libs="sap.m"
-        data-sap-ui-theme="sap_bluecrystal"
+        data-sap-ui-theme="sap_belize"
         data-sap-ui-compatVersion="edge"
         data-sap-ui-appCacheBuster="./"
         data-sap-ui-preload="async"
-        data-sap-ui-resourceroots='{"RESOURCE_PATH": "./"}'
-        data-sap-ui-onInit="init()">
+        data-sap-ui-resourceroots='{"RESOURCE_ROOT": "./"}'>
     </script>
-
-    <link rel="stylesheet"
-        type="text/css"
-        href="css/style.css">
-
     <script>
-        function init() {
-            sap.ui.require(["sap/m/Shell",
-                "sap/ui/core/ComponentContainer",
-                "RESOURCE_PATH/Component"
-            ], function(Shell, ComponentContainer, Component) {
-                new Shell({
-                    app: new ComponentContainer({
-                        height: "100%",
-                        component: new Component({
-                            id: "RESOURCE_PATH.Component"
-                        })
-                    })
-                }).placeAt("content");
+        sap.ui.getCore().attachInit(function() {
+
+            var componentContainer = new sap.ui.core.ComponentContainer({
+                height: "100%"
             });
-        }
+
+            new sap.m.Shell({
+                app: componentContainer,
+                showLogout: false
+            }).placeAt("content");
+
+            var component = sap.ui.component({
+                name: "RESOURCE_ROOT",
+                manifestFirst: true,
+                async: true
+            }).then(function(component) {
+                componentContainer.setComponent(component);
+            });
+
+        });
     </script>
 
 </head>

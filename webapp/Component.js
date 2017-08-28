@@ -2,7 +2,7 @@
 sap.ui.define([
     "sap/ui/core/UIComponent",
     "sap/ui/Device",
-    "RESOURCE_ROOT/model/modelFactory"
+    "com/roche/funcionalperiodsess/model/modelFactory"
 ], function (UIComponent, Device, modelFactory) {
     "use strict";
 
@@ -37,7 +37,10 @@ sap.ui.define([
             } else if (!Device.support.touch) {
                 this.contentDensityClass = "sapUiSizeCompact";
             } else {
-                // "cozy" in case of touch support; default for most sap.m controls, but needed for desktop-first controls like sap.ui.table.Table
+                /*
+                "cozy" in case of touch support; default for most sap.m controls,
+                but needed for desktop-first controls like sap.ui.table.Table
+                */
                 this.contentDensityClass = "sapUiSizeCozy";
             }
         }

@@ -6,7 +6,7 @@ sap.ui.define([
 
     function getFrameUrl(hash, urlParameters) {
         hash = hash || "";
-        var url = jQuery.sap.getResourcePath("RESOURCE_ROOT");
+        var url = jQuery.sap.getResourcePath("RESOURCE/ROOT/PATH");
         url += "/index.html";
 
         if (urlParameters) {
