@@ -15,11 +15,10 @@
         data-sap-ui-compatVersion="edge"
         data-sap-ui-appCacheBuster="./"
         data-sap-ui-preload="async"
-        data-sap-ui-resourceroots='{"RESOURCE_ROOT": "./"}'>
+        data-sap-ui-resourceroots='{"RESOURCE.ROOT": "./"}'>
     </script>
     <script>
         sap.ui.getCore().attachInit(function() {
-
             var componentContainer = new sap.ui.core.ComponentContainer({
                 height: "100%"
             });
@@ -30,13 +29,12 @@
             }).placeAt("content");
 
             var component = sap.ui.component({
-                name: "RESOURCE_ROOT",
+                name: "RESOURCE.ROOT",
                 manifestFirst: true,
                 async: true
             }).then(function(component) {
                 componentContainer.setComponent(component);
             });
-
         });
     </script>
 

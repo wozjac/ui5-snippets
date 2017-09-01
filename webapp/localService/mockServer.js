@@ -1,7 +1,9 @@
 /* global sap, jQuery */
 sap.ui.define([
     "sap/ui/core/util/MockServer"
-], function(MockServer) {
+], function (MockServer) {
+    "use strict";
+
     return function MyMockServer(options) {
         if (!options.rootUri) {
             throw new Error("rootUri not set");
@@ -27,7 +29,7 @@ sap.ui.define([
             rootUri: options.rootUri
         });
 
-        this.run = function() {
+        this.run = function () {
             //mockServer.simulate();
             mockServer.simulate(options.metadataPath, {
                 sMockdataBaseUrl: options.mockDataPath,
@@ -36,11 +38,11 @@ sap.ui.define([
             mockServer.start();
         };
 
-        this.getMockServer = function() {
+        this.getMockServer = function () {
             return mockServer;
         };
 
-        this.getMockData = function() {
+        this.getMockData = function () {
             var metadata = mockServer._loadMetadata(options.metadataPath);
 
             if (!metadata) {

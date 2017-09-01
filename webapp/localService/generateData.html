@@ -9,27 +9,30 @@
     <script id="sap-ui-bootstrap"
         src="../resources/sap-ui-core.js"
         data-sap-ui-libs="sap.m"
-        data-sap-ui-theme="sap_bluecrystal"
+        data-sap-ui-theme="sap_belize"
         data-sap-ui-compatVersion="edge"
         data-sap-ui-appCacheBuster="./"
         data-sap-ui-resourceroots='{
             "localService": "./",
             "RESOURCE_ROOT": "../"
-        }'
-        data-sap-ui-onInit="init()">
+        }'>
     </script>
 
     <script>
-        function init() {
-            sap.ui.require(["localService/mockServer"], function(mockServer) {
-                var data = mockServer.getMockData();
+        sap.ui.getCore().attachInit(function() {
+            sap.ui.require(["localService/MockServer"], function(MockServer) {
+                var myMockServer = new MockServer({
+                    rootUri: "/PATH/",
+                    resourceRoot: "RESOURCE.ROOT"
+                });
+                var data = myMockServer.getMockData();
                 var result;
                 jQuery.each(data, function addLink(key, value) {
                     result = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(value));
                     $('<a href="data:' + result + '"download=' + key + '.json>download ' + key + '</a><br />').appendTo("#content");
-                })
+                });
             })
-        }
+        })
     </script>
 </head>
 

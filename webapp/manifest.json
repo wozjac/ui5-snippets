@@ -67,11 +67,10 @@
                 "preload": "async"
             },
             "": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
                 "dataSource": "mainService",
+                "preload": true,
                 "settings": {
-                    "metadataUrlParams": {
-                        "sap-documentation": "heading"
-                    },
                     "useBatch": true,
                     "defaultCountMode": "None",
                     "defaultBindingMode": "OneWay"
