@@ -2,8 +2,9 @@
 sap.ui.define([
     "sap/ui/core/UIComponent",
     "sap/ui/Device",
-    "com/roche/funcionalperiodsess/model/modelFactory"
-], function (UIComponent, Device, modelFactory) {
+    "com/roche/funcionalperiodsess/model/modelFactory",
+    "sap/m/MessageBox"
+], function (UIComponent, Device, modelFactory, MessageBox) {
     "use strict";
 
     return UIComponent.extend("RESOURCE_ROOT.Component", {
@@ -17,6 +18,7 @@ sap.ui.define([
             UIComponent.prototype.init.apply(this, arguments);
             this.setModel(modelFactory.createDeviceModel(), "device");
             this.getRouter().initialize();
+            this.activateErrorHandlingFor(this.getModel());
         },
 
         destroy: function () {
@@ -43,6 +45,22 @@ sap.ui.define([
                 */
                 this.contentDensityClass = "sapUiSizeCozy";
             }
+        },
+
+        activateErrorHandlingFor: function (odataModel) {
+            odataModel.attachMetadataFailed(this.showErrorMessageBox);
+            odataModel.attachBatchRequestFailed(this.showErrorMessageBox);
+            odataModel.attachRequestFailed(this.showErrorMessageBox);
+        },
+
+        showErrorMessageBox: function (error) {
+            var message;
+            if (error.getParameter("response").responseText !== undefined) {
+                message = JSON.parse(error.getParameter("response").responseText).error.message.value;
+            } else {
+                message = error.getParameter("response").body;
+            }
+            MessageBox.error(message);
         }
     });
 });

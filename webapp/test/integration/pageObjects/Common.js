@@ -29,11 +29,15 @@ sap.ui.define([
         iStartMyApp: function (options) {
             var urlParameters;
 
-            options = options || {
-                delay: 0
-            };
-
+            if (options.delay === undefined || !options) {
+                options.delay = 0;
+            }
             urlParameters = "serverDelay=" + options.delay;
+
+            if (options.urlParameters) {
+                urlParameters += "&" + options.urlParameters;
+            }
+
             this.iStartMyAppInAFrame(getFrameUrl(options.hash, urlParameters));
         }
     });
