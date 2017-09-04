@@ -5,7 +5,7 @@ sap.ui.define([
 ], function (BaseController, JSONModel) {
     "use strict";
 
-    return BaseController.extend("RESOURCE_ROOT.controller.App", {
+    return BaseController.extend("RESOURCE.ROOT.controller.App", {
         onInit: function () {
             var viewModel,
                 originalBusyDelay = this.getView().getBusyIndicatorDelay();

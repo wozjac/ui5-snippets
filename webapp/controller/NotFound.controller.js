@@ -4,7 +4,7 @@ sap.ui.define([
 ], function (BaseController) {
     "use strict";
 
-    return BaseController.extend("RESOURCE_ROOT.controller.NotFound", {
+    return BaseController.extend("RESOURCE.ROOT.controller.NotFound", {
         onLinkPressed: function () {
             this.getRouter().navTo("TARGET");
         }
