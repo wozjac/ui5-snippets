@@ -56,7 +56,13 @@ sap.ui.define([
         showErrorMessageBox: function (error) {
             var message;
             if (error.getParameter("response").responseText !== undefined) {
-                message = JSON.parse(error.getParameter("response").responseText).error.message.value;
+                var responseText = error.getParameter("response").responseText;
+                try {
+                    message = JSON.parse(responseText).error.message.value;
+                } catch (catchedError) {
+                    message = responseText;
+                }
+
             } else {
                 message = error.getParameter("response").body;
             }
