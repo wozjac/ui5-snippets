@@ -14,23 +14,30 @@
         data-sap-ui-appCacheBuster="./"
         data-sap-ui-resourceroots='{
             "localService": "./",
-            "RESOURCE_ROOT": "../"
+            "RESOURCE.ROOT": "../"
         }'>
     </script>
 
     <script>
         sap.ui.getCore().attachInit(function() {
             sap.ui.require(["localService/MockServer"], function(MockServer) {
-                var myMockServer = new MockServer({
-                    rootUri: "/PATH/",
-                    resourceRoot: "RESOURCE.ROOT"
-                });
-                var data = myMockServer.getMockData();
-                var result;
-                jQuery.each(data, function addLink(key, value) {
-                    result = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(value));
-                    $('<a href="data:' + result + '"download=' + key + '.json>download ' + key + '</a><br />').appendTo("#content");
-                });
+                var content = jQuery('<p style="padding: 10px">').appendTo("#content");
+                try {
+                    var myMockServer = new MockServer({
+                        rootUri: "ROOT.URI/",
+                        resourceRoot: "RESOURCE.ROOT"
+                    });
+                    var data = myMockServer.getMockData();
+                    var result;
+                    jQuery.each(data, function addLink(key, value) {
+                        result = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(value));
+                        jQuery('<a href="data:' + result + '"download=' + key + '.json>Download ' + key + '</a><br />').appendTo(content);
+                    });
+                } catch (error) {
+                    jQuery("<p>" + error + "</p>").appendTo(content);
+                }
+                jQuery('<br /><br /><a href="' + myMockServer.getMockServer().getRootUri() + '/$metadata" download="metadata.xml">' + "Download metadata</a>").appendTo(content);
+                jQuery('</p>').appendTo(content);
             })
         })
     </script>
