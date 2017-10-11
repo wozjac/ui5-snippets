@@ -83,7 +83,7 @@
                 "routerClass": "sap.m.routing.Router",
                 "viewType": "XML",
                 "viewPath": "RESOURCE_ROOT.view",
-                "controlId": "app",
+                "controlId": "appControl",
                 "controlAggregation": "pages",
                 "bypassed": {
                     "target": [

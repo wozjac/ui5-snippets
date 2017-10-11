@@ -19,29 +19,31 @@
     </script>
 
     <script>
-        sap.ui.require(["RESOURCE/ROOT/localService/MockServer"], function(MockServer) {
-            var myMockServer = new MockServer({
-                rootUri: "ROOT_URI",
-                resourceRoot: "RESOURCE.ROOT"
-            });
+        sap.ui.getCore().attachInit(function() {
+            sap.ui.require(["RESOURCE/ROOT/localService/MockServer"], function(MockServer) {
+                var myMockServer = new MockServer({
+                    rootUri: "ROOT_URI",
+                    resourceRoot: "RESOURCE.ROOT"
+                });
 
-            myMockServer.run();
+                myMockServer.run();
 
-            var componentContainer = new sap.ui.core.ComponentContainer({
-                height: "100%"
-            });
+                var componentContainer = new sap.ui.core.ComponentContainer({
+                    height: "100%"
+                });
 
-            new sap.m.Shell({
-                app: componentContainer,
-                showLogout: false
-            }).placeAt("content");
+                new sap.m.Shell({
+                    app: componentContainer,
+                    showLogout: false
+                }).placeAt("content");
 
-            var component = sap.ui.component({
-                name: "RESOURCE.ROOT",
-                manifestFirst: true,
-                async: true
-            }).then(function(component) {
-                componentContainer.setComponent(component);
+                var component = sap.ui.component({
+                    name: "RESOURCE.ROOT",
+                    manifestFirst: true,
+                    async: true
+                }).then(function(component) {
+                    componentContainer.setComponent(component);
+                });
             });
         });
     </script>
