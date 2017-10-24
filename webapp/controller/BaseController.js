@@ -1,12 +1,19 @@
 /* global sap */
 sap.ui.define([
-    "sap/ui/core/mvc/Controller"
-], function (Controller) {
+    "sap/ui/core/mvc/Controller",
+    "sap/ui/core/UIComponent"
+], function (Controller, UIComponent) {
     "use strict";
 
     return Controller.extend("RESOURCE.ROOT.BaseController", {
+        router: null,
+        resourceBundle: null,
+
         getRouter: function () {
-            return sap.ui.core.UIComponent.getRouterFor(this);
+            if (!this.router) {
+                this.router = UIComponent.getRouterFor(this);
+            }
+            return this.router;
         },
 
         getModel: function (name) {
@@ -18,7 +25,10 @@ sap.ui.define([
         },
 
         getResourceBundle: function () {
-            return this.getOwnerComponent().getModel("i18n").getResourceBundle();
+            if (!this.resourceBundle) {
+                this.resourceBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
+            }
+            return this.resourceBundle;
         },
 
         getContentDensityClass: function () {
@@ -27,6 +37,10 @@ sap.ui.define([
 
         byId: function (id) {
             return this.getView().byId(id);
+        },
+
+        getMessageManager: function () {
+            return sap.ui.getCore().getMessageManager();
         }
     });
 });
