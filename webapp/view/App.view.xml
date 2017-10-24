@@ -4,7 +4,5 @@
     xmlns="sap.m">
 
     <App id="appControl"
-        busy="{viewModel>/busy}"
-        busyIndicatorDelay="{viewModel>/delay}" />
-
+        busy="{viewModel>/busy}" />
 </mvc:View>

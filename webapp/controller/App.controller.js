@@ -1,28 +1,45 @@
 /* global sap */
 sap.ui.define([
-    "RESOURCE_ROOT/controller/BaseController",
+    "RESOURCE.ROOT/controller/BaseController",
     "sap/ui/model/json/JSONModel"
 ], function (BaseController, JSONModel) {
     "use strict";
 
     return BaseController.extend("RESOURCE.ROOT.controller.App", {
         onInit: function () {
-            var viewModel,
-                originalBusyDelay = this.getView().getBusyIndicatorDelay();
-
-            viewModel = new JSONModel({
+            var viewModel = new JSONModel({
                 busy: true,
                 delay: 0
             });
-            this.setModel(viewModel, "viewModel");
 
-            var setAppNotBusy = function () {
-                viewModel.setProperty("/busy", false);
-                viewModel.setProperty("/delay", originalBusyDelay);
-            };
-
-            this.getOwnerComponent().getModel().metadataLoaded().then(setAppNotBusy);
+            this.setModel(viewModel, "appView");
+            this.attachBusyIndicatorEvents();
             this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
+        },
+
+        attachBusyIndicatorEvents: function () {
+            var viewModel = this.getView().getModel("appView");
+            var model = this.getOwnerComponent().getModel();
+
+            model.metadataLoaded().then(function () {
+                viewModel.setProperty("/busy", false);
+            });
+
+            model.attachBatchRequestSent(function () {
+                viewModel.setProperty("/busy", true);
+            });
+
+            model.attachBatchRequestCompleted(function () {
+                viewModel.setProperty("/busy", false);
+            });
+
+            model.attachRequestSent(function () {
+                viewModel.setProperty("/busy", true);
+            });
+
+            model.attachRequestCompleted(function () {
+                viewModel.setProperty("/busy", false);
+            });
         }
     });
 });
