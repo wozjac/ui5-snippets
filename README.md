@@ -1,2 +1,2 @@
 # ui5-template
-A base skeleton of an SAP/Open UI5 application I use in my projects.
+A base skeleton for a SAP/Open UI5 application I usually use in my projects.

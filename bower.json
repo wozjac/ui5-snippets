@@ -2,9 +2,9 @@
     "name": "NAME",
     "private": true,
     "dependencies": {
-        "openui5-sap.ui.core": "openui5/packaged-sap.ui.core#~1.36.15",
-        "openui5-sap.m": "openui5/packaged-sap.m#~1.36.15",
-        "openui5-sap.ui.layout": "openui5/packaged-sap.ui.layout#~1.36.15",
-        "openui5-themelib_sap_bluecrystal": "openui5/packaged-themelib_sap_bluecrystal#~1.36.15"
+        "openui5-sap.ui.core": "openui5/packaged-sap.ui.core#~VERSION",
+        "openui5-sap.m": "openui5/packaged-sap.m#~VERSION",
+        "openui5-sap.ui.layout": "openui5/packaged-sap.ui.layout#~VERSION",
+        "openui5-themelib_sap_bluecrystal": "openui5/packaged-themelib_sap_bluecrystal#~VERSION"
     }
 }

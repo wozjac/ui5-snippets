@@ -107,20 +107,11 @@
                     "viewId": "VIEW_ID",
                     "viewLevel": 1
                 },
-                "objectNotFound": {
-                    "viewName": "ObjectNotFound",
-                    "viewId": "objectNotFound"
-                },
                 "notFound": {
                     "viewName": "NotFound",
                     "viewId": "notFound"
                 }
             }
-        },
-        "resources": {
-            "css": [{
-                "uri": "css/style.css"
-            }]
         }
     }
 }
