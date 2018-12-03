@@ -29,8 +29,10 @@ sap.ui.define([
         iStartMyApp: function (options) {
             var urlParameters;
 
-            if (options.delay === undefined || !options) {
-                options.delay = 0;
+            if (!options) {
+                options = {
+                    delay: 0
+                };
             }
             urlParameters = "serverDelay=" + options.delay;
 
