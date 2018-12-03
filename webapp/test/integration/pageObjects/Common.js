@@ -34,6 +34,7 @@ sap.ui.define([
                     delay: 0
                 };
             }
+
             urlParameters = "serverDelay=" + options.delay;
 
             if (options.urlParameters) {
