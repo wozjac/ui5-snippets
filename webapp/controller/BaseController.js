@@ -5,7 +5,7 @@ sap.ui.define([
 ], function (Controller, UIComponent) {
     "use strict";
 
-    return Controller.extend("RESOURCE.ROOT.BaseController", {
+    return Controller.extend("RESOURCE_ROOT.controller.BaseController", {
         router: null,
         resourceBundle: null,
 

@@ -1,11 +1,11 @@
 /* global sap */
 sap.ui.define([
-    "RESOURCE.ROOT/controller/BaseController",
+    "RESOURCE_ROOT/controller/BaseController",
     "sap/ui/model/json/JSONModel"
 ], function (BaseController, JSONModel) {
     "use strict";
 
-    return BaseController.extend("RESOURCE.ROOT.controller.App", {
+    return BaseController.extend("RESOURCE_ROOT.controller.App", {
         onInit: function () {
             var viewModel = new JSONModel({
                 busy: true,

@@ -5,7 +5,7 @@ sap.ui.define([
 ], function (Object, MessageBox) {
     "use strict";
 
-    return Object.extend("RESOURCE.ROOT.controller.ErrorHandler", {
+    return Object.extend("RESOURCE_ROOT.controller.ErrorHandler", {
         resourceBundle: null,
         component: null,
         model: null,
