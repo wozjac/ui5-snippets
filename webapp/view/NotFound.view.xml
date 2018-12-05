@@ -5,10 +5,10 @@
     <MessagePage title="{i18n>notFoundTitle}"
         text="{i18n>notFoundText}"
         icon="{sap-icon://document}"
-        id="page"
+        id="notFoundPage"
         description="">
         <customDescription>
-            <Link id="link"
+            <Link id="notFoundBacklink"
                 text="{i18n>backFromNotFound}"
                 press="onBackLinkPressed" />
         </customDescription>
