@@ -2,7 +2,7 @@
 sap.ui.define([
     "sap/ui/core/UIComponent",
     "sap/ui/Device",
-    "RESOURCE_ROOT/model/modelFactory",
+    "RESOURCE_ROOT/js/model/modelFactory",
     "RESOURCE_ROOT/controller/ErrorHandler"
 ], function (UIComponent, Device, modelFactory, ErrorHandler) {
     "use strict";
@@ -15,10 +15,14 @@ sap.ui.define([
         contentDensityClass: null,
 
         init: function () {
+            this._initModels();
+            this.appModel = this.getModel("App");
+            this.appModel.setProperty("/appBusy", true);
+
             UIComponent.prototype.init.apply(this, arguments);
-            this.setModel(modelFactory.createDeviceModel(), "device");
-            this.getRouter().initialize();
             this.errorHandler = new ErrorHandler(this, this.getModel());
+            this.getRouter().initialize();
+            this.appModel.setProperty("/appBusy", false);
         },
 
         destroy: function () {
@@ -27,12 +31,44 @@ sap.ui.define([
 
         getContentDensityClass: function () {
             if (this.contentDensityClass === null) {
-                this.recognizeContentDensityClass();
+                this._recognizeContentDensityClass();
             }
             return this.contentDensityClass;
         },
 
-        recognizeContentDensityClass: function () {
+        _initModels: function () {
+            this.setModel(modelFactory.createDeviceModel(), "Device");
+
+            var appModel = modelFactory.createAppModel();
+            this.setModel(appModel, "App");
+
+            var odataModel = this.getModel();
+            this._attachBusyIndicatorEvents(odataModel, appModel);
+        },
+
+        _attachBusyIndicatorEvents: function (odataModel, appModel) {
+            odataModel.metadataLoaded().then(function () {
+                appModel.setProperty("/appBusy", false);
+            });
+
+            odataModel.attachBatchRequestSent(function () {
+                appModel.setProperty("/appBusy", true);
+            });
+
+            odataModel.attachBatchRequestCompleted(function () {
+                appModel.setProperty("/appBusy", false);
+            });
+
+            odataModel.attachRequestSent(function () {
+                appModel.setProperty("/appBusy", true);
+            });
+
+            odataModel.attachRequestCompleted(function () {
+                appModel.setProperty("/appBusy", false);
+            });
+        },
+
+        _recognizeContentDensityClass: function () {
             // check whether FLP has already set the content density class; do nothing in this case
             if (jQuery(document.body).hasClass("sapUiSizeCozy") || jQuery(document.body).hasClass("sapUiSizeCompact")) {
                 this.contentDensityClass = "";
