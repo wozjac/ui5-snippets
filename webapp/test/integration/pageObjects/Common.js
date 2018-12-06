@@ -1,7 +1,8 @@
-/* global sap, jQuery */
+/* global sap, jQuery, ok */
 sap.ui.define([
-    "sap/ui/test/Opa5"
-], function (Opa5) {
+    "sap/ui/test/Opa5",
+    "sap/ui/test/matchers/Properties"
+], function (Opa5, Properties) {
     "use strict";
 
     function getFrameUrl(hash, urlParameters) {
@@ -42,6 +43,20 @@ sap.ui.define([
             }
 
             this.iStartMyAppInAFrame(getFrameUrl(options.hash, urlParameters));
+        },
+
+        controlIsNotVisible: function (viewName, controlId) {
+            return this.waitFor({
+                viewName: viewName,
+                visible: false,
+                id: controlId,
+                matchers: new Properties({
+                    visible: false
+                }),
+                success: function () {
+                    ok(true, controlId + " is not visible");
+                }
+            });
         }
     });
 });
