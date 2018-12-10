@@ -21,7 +21,7 @@ sap.ui.define([
 
             UIComponent.prototype.init.apply(this, arguments);
             this.errorHandler = new ErrorHandler(this, this.getModel());
-            this.getRouter().initialize();
+            this.getRouter().initialize(); //optionally _initUser() to get backend user data upfront
             this.appModel.setProperty("/appBusy", false);
         },
 
@@ -44,6 +44,25 @@ sap.ui.define([
 
             var odataModel = this.getModel();
             this._attachBusyIndicatorEvents(odataModel, appModel);
+        },
+
+        _initUser: function () {
+            var that = this;
+            var odataModel = this.getModel();
+            var userSetPath = "/USER_PATH('')";
+            this.appModel.setProperty("/appBusy", true);
+
+            odataModel.read(userSetPath, {
+                success: function (userInfo) {
+                    that.getModel("App").setProperty("/user", userInfo);
+                    that.getRouter().initialize();
+                    that.appModel.setProperty("/appBusy", false);
+                },
+                error: function (error) {
+                    that.appModel.setProperty("/appBusy", false);
+                    jQuery.sap.log.error(error);
+                }
+            });
         },
 
         _attachBusyIndicatorEvents: function (odataModel, appModel) {

@@ -26,6 +26,8 @@
                     resourceRoot: "RESOURCE.ROOT"
                 });
 
+                myMockServer.simulate();
+                myMockServer.adjustCalls(); //optional
                 myMockServer.run();
 
                 var componentContainer = new sap.ui.core.ComponentContainer({
