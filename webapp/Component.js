@@ -3,7 +3,7 @@ sap.ui.define([
     "sap/ui/core/UIComponent",
     "sap/ui/Device",
     "RESOURCE_ROOT/js/model/modelFactory",
-    "RESOURCE_ROOT/controller/ErrorHandler"
+    "RESOURCE_ROOT/js/ErrorHandler"
 ], function (UIComponent, Device, modelFactory, ErrorHandler) {
     "use strict";
 

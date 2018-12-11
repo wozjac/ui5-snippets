@@ -5,7 +5,7 @@ sap.ui.define([
 ], function (Object, MessageBox) {
     "use strict";
 
-    return Object.extend("RESOURCE_ROOT.controller.ErrorHandler", {
+    return Object.extend("RESOURCE_ROOT.js.ErrorHandler", {
         resourceBundle: null,
         component: null,
         model: null,
@@ -34,20 +34,11 @@ sap.ui.define([
         },
 
         getErrorMessage: function (error) {
-            var message;
-            if (error.getParameter("response").responseText !== undefined) {
-                var responseText = error.getParameter("response").responseText;
-                try {
-                    message = JSON.parse(responseText).error.message.value;
-                } catch (catchedError) {
-                    message = responseText;
-                }
+            /* sample logic based on message manager */
+            var messageModel = sap.ui.getCore().getMessageManager().getMessageModel();
+            var messages = messageModel.getData();
 
-            } else {
-                message = error.getParameter("response").body;
-            }
-
-            return message;
+            return messages[0].message;
         },
 
         showErrorMessageBox: function (message) {
