@@ -35,7 +35,7 @@ sap.ui.define([
             return this.getOwnerComponent().getContentDensityClass();
         },
 
-        byId: function (id) {
+        getById: function (id) {
             return this.getView().byId(id);
         },
 
