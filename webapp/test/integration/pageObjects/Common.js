@@ -54,7 +54,7 @@ sap.ui.define([
                     visible: false
                 }),
                 success: function () {
-                    ok(true, controlId + " is not visible");
+                    Opa5.assert.ok(true, controlId + " is not visible");
                 }
             });
         }

@@ -1,4 +1,4 @@
-/* global sap, ok */
+/* global sap */
 sap.ui.define(["sap/ui/test/Opa5", "test/integration/pageObjects/Common"],
     function (Opa5, Common) {
         "use strict";
@@ -15,7 +15,7 @@ sap.ui.define(["sap/ui/test/Opa5", "test/integration/pageObjects/Common"],
                             viewName: "VIEW_NAME",
                             id: "ID",
                             success: function () {
-                                ok(true, "OK");
+                                Opa5.assert.ok(true, "OK");
                             }
                         });
                     }
