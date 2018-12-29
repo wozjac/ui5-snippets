@@ -4,7 +4,7 @@ jQuery.sap.require("sap.ui.thirdparty.qunit");
 jQuery.sap.require("sap.ui.qunit.qunit-junit");
 QUnit.config.autostart = false;
 
-sap.ui.require([
+sap.ui.define([
     "sap/ui/test/Opa5",
     "test/integration/pageObjects/Common",
     "test/integration/pageObjects/PAGE_OBJECT"
@@ -15,6 +15,7 @@ sap.ui.require([
         arrangements: new Common(),
         viewNamespace: "VIEW_NAMESPACE."
     });
+
     sap.ui.require([
         "test/integration/journeys/JOURNEY1"
     ], function () {

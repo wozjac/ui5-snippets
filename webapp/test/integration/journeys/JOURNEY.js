@@ -1,5 +1,5 @@
 /* global sap, QUnit, opaTest */
-sap.ui.require(["sap/ui/test/opaQunit"], function () {
+sap.ui.define(["sap/ui/test/opaQunit"], function () {
     "use strict";
 
     QUnit.module("MODULE");
