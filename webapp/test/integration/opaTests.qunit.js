@@ -2,6 +2,7 @@
 QUnit.config.autostart = false;
 
 //latency problem workaround
+//https://blogs.sap.com/2016/11/21/headless-opa5-testing-with-karma-and-phantomjs
 function checkStart() {
     "use strict";
 
