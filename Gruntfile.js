@@ -1,8 +1,11 @@
 /* global module, require */
 var proxySnippet = require("grunt-connect-proxy/lib/utils").proxyRequest;
 
+/* REVIEW NEEDED */
 module.exports = function (grunt) {
     "use strict";
+
+    require("load-grunt-tasks")(grunt);
 
     var protocol = grunt.option("protocol");
     if (protocol === undefined) {
@@ -113,15 +116,15 @@ module.exports = function (grunt) {
         copy: {
             dist: {
                 files: [{
-                        expand: true,
-                        cwd: "<%= dir.app %>",
-                        src: [
+                    expand: true,
+                    cwd: "<%= dir.app %>",
+                    src: [
                             "**",
                             "!test/**",
                             "!indexLocal.html",
                             "!localService/**"
                         ],
-                        dest: "<%= dir.dist %>"
+                    dest: "<%= dir.dist %>"
                         }]
             }
         },
@@ -172,18 +175,6 @@ module.exports = function (grunt) {
             }
         },
     });
-
-    grunt.loadNpmTasks("grunt-contrib-connect");
-    grunt.loadNpmTasks("grunt-contrib-clean");
-    grunt.loadNpmTasks("grunt-contrib-copy");
-    grunt.loadNpmTasks("grunt-openui5");
-    grunt.loadNpmTasks("grunt-open");
-    grunt.loadNpmTasks("grunt-connect-proxy");
-    grunt.loadNpmTasks("grunt-contrib-watch");
-    grunt.loadNpmTasks("grunt-contrib-compress");
-    grunt.loadNpmTasks("grunt-contrib-qunit");
-    grunt.loadNpmTasks("grunt-qunit-junit");
-    grunt.loadNpmTasks("grunt-eslint");
 
     grunt.registerTask("openui5-local", ["openui5_connect:local"]);
 
