@@ -1,6 +1,6 @@
 /* global sap */
 sap.ui.define([
-    "test/unit/PATH"
+    "test/unit/UNIT_TEST"
 ], function () {
     "use strict";
 });

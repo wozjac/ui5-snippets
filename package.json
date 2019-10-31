@@ -19,11 +19,10 @@
         "eslint": "^5.11.1",
         "grunt": "^1.0.3",
         "grunt-babel": "^8.0.0",
-        "karma": "^3.1.4",
+        "karma": "^4.0.1",
         "karma-chrome-launcher": "^2.2.0",
         "karma-coverage": "^1.1.2",
-        "karma-openui5": "^0.2.3",
-        "karma-qunit": "^2.1.0",
+        "karma-ui5": "^1.0.0",
         "load-grunt-tasks": "^4.0.0",
         "qunit": "^2.8.0"
     }
