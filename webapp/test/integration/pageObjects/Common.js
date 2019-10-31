@@ -1,4 +1,4 @@
-/* global sap, jQuery, ok */
+/* global sap, jQuery */
 sap.ui.define([
     "sap/ui/test/Opa5",
     "sap/ui/test/matchers/Properties"

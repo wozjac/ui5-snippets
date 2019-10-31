@@ -34,7 +34,7 @@ sap.ui.define([
                 sMockdataBaseUrl: options.mockDataPath,
                 bGenerateMissingMockData: options.generateMissing
             });
-        }
+        };
 
         this.run = function () {
             mockServer.start();
@@ -64,7 +64,7 @@ sap.ui.define([
                 }
             });
             */
-        }
+        };
 
         this.getMockData = function () {
             var metadata = mockServer._loadMetadata(options.metadataPath);
