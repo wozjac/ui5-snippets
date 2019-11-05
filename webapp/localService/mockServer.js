@@ -66,6 +66,28 @@ sap.ui.define([
             */
         };
 
+        this.addCalls = function () {
+            /* Add new requests to the mock server */
+            /*
+            var myCall = {
+                method: "GET",
+                path: new RegExp("MyFunctionImport?(.*)"),
+                response: function (xhr, urlParams) {
+                    jQuery.sap.log.debug("Incoming request for MyFunctionImport");
+
+                    xhr.respondJSON(200, {}, JSON.stringify({
+                        d: {
+                            "Name": "Value"
+                        }
+                    }));
+                }
+            };
+
+            var mockedRequests = [myCall];
+            this.getMockServer().setRequests(this.getMockServer().getRequests().concat(mockedRequests));
+            */
+        }
+
         this.getMockData = function () {
             var metadata = mockServer._loadMetadata(options.metadataPath);
 
