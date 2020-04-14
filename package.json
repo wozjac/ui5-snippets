@@ -1,6 +1,14 @@
 {
     "name": "NAME",
     "private": true,
+    "scripts": {
+        "eslint": "eslint **/*.js",
+        "coverage": "karma start karma.coverage.js",
+        "serve": "ui5 serve",
+        "serve-sync": "timeout 2 && browser-sync start --proxy \"localhost:8080\" --files \"webapp\" --no-notify --startPath index.html",
+        "serve-with-sync": "npm-run-all -p serve serve-sync",
+        "dev": "npm run serve-with-sync"
+    },
     "devDependencies": {
         "grunt-connect-proxy": "^0.2.0",
         "grunt-contrib-clean": "^0.6.0",
@@ -19,11 +27,13 @@
         "eslint": "^5.11.1",
         "grunt": "^1.0.3",
         "grunt-babel": "^8.0.0",
-        "karma": "^4.0.1",
-        "karma-chrome-launcher": "^2.2.0",
-        "karma-coverage": "^1.1.2",
-        "karma-ui5": "^1.0.0",
         "load-grunt-tasks": "^4.0.0",
-        "qunit": "^2.8.0"
+        "qunit": "^2.8.0",
+        "browser-sync": "^2.26.7",
+        "karma": "^5.0.1",
+        "karma-chrome-launcher": "^3.1.0",
+        "karma-coverage": "^2.0.2",
+        "karma-ui5": "^2.1.0",
+        "npm-run-all": "^4.1.5",
     }
 }

@@ -45,7 +45,8 @@
         "rootView": {
             "viewName": "RESOURCE_ROOT.view.App",
             "type": "XML",
-            "id": "app"
+            "id": "app",
+            "async": true
         },
         "handleValidation": true,
         "dependencies": {

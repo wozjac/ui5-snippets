@@ -1,8 +1,9 @@
 /* global sap */
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/core/UIComponent"
-], function (Controller, UIComponent) {
+    "sap/ui/core/UIComponent",
+    "sap/ui/core/routing/History"
+], function (Controller, UIComponent, History) {
     "use strict";
 
     return Controller.extend("RESOURCE_ROOT.controller.BaseController", {
@@ -41,6 +42,26 @@ sap.ui.define([
 
         getMessageManager: function () {
             return sap.ui.getCore().getMessageManager();
+        },
+
+        getText(key, ...args) {
+            return this.getResourceBundle().getText(key, args);
+        },
+
+        getTextByKey(key) {
+            return this.getResourceBundle().getText(key);
+        },
+
+        onNavBack() {
+            const previousHash = History.getInstance().getPreviousHash();
+
+            if (previousHash !== undefined) {
+                // The history contains a previous entry
+                history.go(-1);
+            } else {
+                // Otherwise we go backwards with a forward history
+                this.getRouter().navTo("master", {}, true);
+            }
         }
     });
 });

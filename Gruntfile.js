@@ -1,7 +1,7 @@
 /* global module, require */
 var proxySnippet = require("grunt-connect-proxy/lib/utils").proxyRequest;
 
-/* REVIEW NEEDED */
+/* Not using Grunt right now but kept for reference */
 module.exports = function (grunt) {
     "use strict";
 
@@ -70,7 +70,7 @@ module.exports = function (grunt) {
                 resources: [
                     "<%= dir.bower_components %>/openui5-sap.ui.core/resources",
                     "<%= dir.bower_components %>/openui5-sap.m/resources",
-                    "<%= dir.bower_components %>/openui5-themelib_sap_bluecrystal/resources",
+                    "<%= dir.bower_components %>/openui5-themelib_sap_fiori_3/resources",
                     "<%= dir.bower_components %>/openui5-sap.ui.layout/resources"
                 ]
             },
